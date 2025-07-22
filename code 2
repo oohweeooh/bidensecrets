@@ -7619,11 +7619,47 @@ function switcheroo28() {
     e.candidate_json[id].fields.last_name = "Oliver"
     e.candidate_json[id].fields.color_hex = "#ff5733 " 
 }
+function switcheroo30() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(202)
+    e.candidate_json[id].fields.first_name = "Justin"
+    e.candidate_json[id].fields.last_name = "Amash"
+    e.candidate_json[id].fields.color_hex = "#ff5733 " 
+}
+function switcheroo31() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(202)
+    e.candidate_json[id].fields.first_name = "Robert F."
+    e.candidate_json[id].fields.last_name = "Kennedy Jr"
+    e.candidate_json[id].fields.color_hex = "#ff5733 " 
+}
+function switcheroo32() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(202)
+    e.candidate_json[id].fields.first_name = "Gary"
+    e.candidate_json[id].fields.last_name = "Johnson"
+    e.candidate_json[id].fields.color_hex = "#ff5733 " 
+}
 //greens
 function switcheroo29() {
     var id = e.candidate_json.map(p=>p.pk).indexOf(203)
     e.candidate_json[id].fields.first_name = "Jill"
     e.candidate_json[id].fields.last_name = "Stein"
+    e.candidate_json[id].fields.color_hex = "#C1E1C1 " 
+}
+function switcheroo33() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(203)
+    e.candidate_json[id].fields.first_name = "Cornel"
+    e.candidate_json[id].fields.last_name = "West"
+    e.candidate_json[id].fields.color_hex = "#C1E1C1 " 
+}
+function switcheroo34() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(203)
+    e.candidate_json[id].fields.first_name = "Howie"
+    e.candidate_json[id].fields.last_name = "Hawkins"
+    e.candidate_json[id].fields.color_hex = "#C1E1C1 " 
+}
+function switcheroo35() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(203)
+    e.candidate_json[id].fields.first_name = "Ajamu"
+    e.candidate_json[id].fields.last_name = "Baraka"
     e.candidate_json[id].fields.color_hex = "#C1E1C1 " 
 }
 
@@ -7638,32 +7674,39 @@ cyoAdventure = function(a) {
     //win
     if (ans == 83985 || ans == 83986 || ans == 83991 || ans == 83992 || ans == 83996 || ans == 83997 || ans == 84000 || ans == 84009 || ans == 84010 || ans == 84013 || ans == 84015 || ans == 84036 || ans == 84037) {
         win += 1;
+        updateStatsPopup();
     }
 
     //progrep
     if (ans == 83952 || ans == 83962 || ans == 83985 || ans == 83990 || ans == 83996 || ans == 84004 || ans == 84009 || ans == 84013 || ans == 84017 || ans == 84036) {
         progrep += 1;
+        updateStatsPopup();
     }
 
     if (ans == 83995 || ans == 83999 || ans == 84018) {
         progrep -= 1;
+        updateStatsPopup();
     }
 
     if (ans == 84038) {
         progrep -= 2;
+        updateStatsPopup();
     }
 
     //trust
     if (ans == 83952 || ans == 83957 || ans == 83985 || ans == 83986 || ans == 83988 || ans == 83990 || ans == 83991 || ans == 83996 || ans == 84000 || ans == 84004 || ans == 84009 || ans == 84010 || ans == 84013 || ans == 84015 || ans == 84017 || ans == 84036 || ans == 84037 || ans == 84038) {
         trust += 1;
+        updateStatsPopup();
     }
 
     if (ans == 83995 || ans == 84002 || ans == 84005 || ans == 84011 || ans == 84014) {
         trust -= 1;
+        updateStatsPopup();
     }
 
     if (ans == 84018) { 
         trust -= 2; 
+        updateStatsPopup();
     }
     
     //did you debate
@@ -7725,8 +7768,24 @@ cyoAdventure = function(a) {
 
     //Q14
     if (e.noCounter == 13) {
-        switcheroo28();
-        switcheroo29();
+        if (win >= 4) {
+            if (trust >= 6) {
+                switcheroo29(); 
+                switcheroo32(); 
+            } else if (trust < 6) {
+                switcheroo28(); 
+                switcheroo34(); 
+            }
+        } else if (win < 4) {
+            if (trust >= 6) {
+                switcheroo33(); 
+                switcheroo30(); 
+            } else if (trust < 6) {
+                switcheroo35(); 
+                switcheroo31(); 
+            }
+        }
+
         if (running == true) {
             if (debate == 1 && win > 6 && trust > 5) { // stuck in after debate
                 campaignTrail_temp.questions_json[13] = tunnel(84047);
@@ -7768,48 +7827,46 @@ cyoAdventure = function(a) {
         } 
         else if (running == false) {
             campaignTrail_temp.questions_json[13] = tunnel(84045);
-        }
-    }
-
-    if (e.noCounter == 13 && running == false){
-        if (progrep >= 5){
-            if(win >= 6){
-                if(trust >= 9){
-                    switcheroo4();
-                    switcheroo12();
-                }else if (trust < 9){
-                    switcheroo5();
-                    switcheroo13();
+            
+            if (progrep >= 5) {
+                if (win >= 4) {
+                    if (trust >= 6) {
+                        switcheroo4();
+                        switcheroo12();
+                    } else if (trust < 6) {
+                        switcheroo5();
+                        switcheroo13();
+                    }
+                } else if (win < 4) {
+                    if (trust >= 6) {
+                        switcheroo3();
+                        switcheroo14();
+                        vpTable["Kamala Harris"] = "Andy Beshear";
+                    } else if (trust < 6) {
+                        switcheroo6();
+                        switcheroo15();
+                    }
                 }
-            } else if(win < 6){
-                if(trust >= 9){
-                    switcheroo3();
-                    switcheroo14();
-                    vpTable["Kamala Harris"] = "Andy Beshear";
-                } else if (trust < 9){
-                    switcheroo6();
-                    switcheroo15();
-                }
+            } else if (progrep < 5) {
+                if (win >= 4) {
+                    if (trust >= 6) {
+                        switcheroo7();
+                        switcheroo16();
+                    } else if (trust < 6) {
+                        switcheroo8();
+                        switcheroo17();
+                    }
+                } else if (win < 4) {
+                    if (trust >= 6) {
+                        switcheroo9();
+                        switcheroo18();
+                    } else if (trust < 6) {
+                        switcheroo10();
+                        switcheroo19();
+                        vpTable["Donald Trump"] = "Sarah Huckabee Sanders";
+                    }
+                } 
             }
-        }else if (progrep < 5){
-            if(win >= 6){
-                if(trust >= 9){
-                    switcheroo7();
-                    switcheroo16();
-                }else if (trust < 9){
-                    switcheroo8();
-                    switcheroo17();
-                }
-            } else if(win < 6){
-                if(trust >= 9){
-                    switcheroo9();
-                    switcheroo18();
-                } else if (trust < 9){
-                    switcheroo10();
-                    switcheroo19();
-                    vpTable["Donald Trump"] = "Sarah Huckabee Sanders";
-                }
-            } 
         }
     }
 
@@ -7931,9 +7988,15 @@ vpTable = {
 
     // Greens
     "Jill Stein": "Butch Ware",
+    "Cornel West": "Kshama Sawant",
+    "Howie Hawkins": "Dario Hunter",
+    "Ajamu Baraka": "Gloria La Riva",
 
     //Libertarians
-    "Chase Oliver": "Mike ter Maat"
+    "Chase Oliver": "Mike ter Maat",
+    "Gary Johnson": "Larry Sharpe",
+    "Robert F. Kennedy Jr": "Vivek Ramaswamy",
+    "Justin Amash": "Thomas Massie"
 }
 
 vpTableHistorical = {
@@ -8011,3 +8074,219 @@ const candidateWatcherConfig = { attributes: true, childList: true, subtree: tru
 
 const candidateObserver = new MutationObserver(onGameWindowChangeCandidates);
 candidateObserver.observe(gameWindowNode, candidateWatcherConfig);
+
+const box = document.createElement('div');
+box.id = 'draggable-box';
+box.className = 'game-stats-popup';
+
+Object.assign(box.style, {
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    width: "140px",
+    height: "140px",
+    backgroundImage: "url('https://i.imgur.com/xZzt24H.png')", 
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    color: "#FFFFFF",
+    padding: "10px",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+    zIndex: "10000",
+    fontSize: "14px",
+    display: "block",
+    cursor: "move",
+    overflowY: "visible",
+    fontFamily: "'Segoe UI', Arial, sans-serif"
+});
+
+const content = document.createElement('div');
+box.appendChild(content);
+
+document.body.appendChild(box);
+
+let isDragging = false;
+let offsetX = 0, offsetY = 0;
+
+box.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - box.getBoundingClientRect().left;
+    offsetY = e.clientY - box.getBoundingClientRect().top;
+    box.style.transition = 'none';
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+        box.style.left = `${e.clientX - offsetX}px`;
+        box.style.top = `${e.clientY - offsetY}px`;
+        box.style.right = 'auto';
+        box.style.bottom = 'auto';
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+    box.style.transition = 'all 0.1s ease';
+});
+
+
+// Update the injectTooltipStyles function
+function injectTooltipStyles() {
+    if (document.getElementById("tooltipStyles")) return;
+
+    const style = document.createElement("style");
+    style.id = "tooltipStyles";
+    style.textContent = `
+        /* Previous tooltip styles remain the same */
+        .hover-value {
+            border-bottom: 1px dotted #fff;
+            cursor: help;
+            position: relative;
+        }
+
+        .hover-value::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: #FFFFFF;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-family: 'Segoe UI', sans-serif;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10001;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .hover-value:hover::after {
+            opacity: 1;
+        }
+        
+        .stat-row {
+            margin: 10px 0;
+            padding: 0px;
+            line-height: 1.2;
+            transition: background 0.2s ease;
+            border-radius: 4px;
+            color: black;
+        }
+
+    `;
+    document.head.appendChild(style);
+}
+
+const VARIABLE_DESCRIPTIONS = {
+    'win': 'Major victories achieved during term',
+    'progrep': 'Appeal to progressives',
+    'trust': 'Public trust and approval ratings'
+};
+
+function createScoreElement(label, value, container) {
+    injectTooltipStyles();
+    
+    let statusMessage;
+    switch(label.toLowerCase()) {
+        case 'win':
+            statusMessage = value > 8 ? `Historic achievement` :
+                          value > 3 ? `Solid performance` :
+                          `Needs more wins`;
+            break;
+        case 'progrep':
+            statusMessage = value > 7 ? `Perfect progressive-realism balance` :
+                          value > 4 ? `Moderate balance` :
+                          `Needs better alignment`;
+            break;
+        case 'trust':
+            statusMessage = value > 7 ? `Sky-high public trust` :
+                          value > 4 ? `Moderate approval` :
+                          `Low confidence`;
+            break;
+        default:
+            statusMessage = `${value}`;
+    }
+
+    const row = document.createElement('div');
+    row.className = 'stat-row';
+    row.innerHTML = `
+        <span class="hover-value" data-tooltip="${VARIABLE_DESCRIPTIONS[label.toLowerCase()] || label}">
+            ${label}
+        </span>: 
+        <span class="hover-value" data-tooltip="${statusMessage}">
+            ${value}
+        </span>
+    `;
+    
+    container.appendChild(row);
+}
+
+function updateStatsPopup() {
+    content.innerHTML = '';
+    createScoreElement('Win', win, content);
+    createScoreElement('ProgRep', progrep, content);
+    createScoreElement('Trust', trust, content);
+}
+
+window.updateStatsPopup = updateStatsPopup;
+updateStatsPopup();
+
+
+function addStatsPopupButton() {
+    if (document.getElementById('stats_popup_button')) return;
+
+    // Find the reference button (electoral map button)
+    const refButton = document.getElementById('view_electoral_map');
+    if (!refButton) {
+        console.warn('Could not find electoral map button');
+        return;
+    }
+
+    // Create the stats button
+    const newButton = document.createElement('button');
+    newButton.id = 'stats_popup_button';
+    newButton.style.cssText = `
+        margin-left: 1.5em;
+        position: static !important;
+        display: inline-block !important;
+    `;
+    newButton.textContent = 'Game Stats';
+
+    refButton.insertAdjacentElement('afterend', newButton);
+    newButton.addEventListener('click', toggleStatsPopup);
+}
+
+function toggleStatsPopup() {
+    const box = document.getElementById('draggable-box');
+    if (box.style.display === 'none' || !box.style.display) {
+        box.style.display = 'block';
+    } else {
+        box.style.display = 'none';
+    }
+}
+
+function handleMutations(mutationsList, observer) {
+    if (observerRunning) return;
+    observerRunning = true;
+
+    addStatsPopupButton();
+
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    observerRunning = false;
+}
+
+
+let observerRunning = false;
+
+var element = document.getElementById('controlElement');
+if (!element) {
+    let singleObserver = new MutationObserver(handleMutations);
+    singleObserver.observe(document.documentElement, { childList: true, subtree: true });
+    var controlElement = document.createElement('div');
+    controlElement.style.display = 'none';
+    controlElement.id = 'controlElement';
+    document.body.appendChild(controlElement);
+}
