@@ -7612,6 +7612,20 @@ function switcheroo27() {
     e.candidate_json[id].fields.last_name = "Scott"
     e.candidate_json[id].fields.color_hex = "#D91656" 
 }
+//libertarians
+function switcheroo28() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(202)
+    e.candidate_json[id].fields.first_name = "Chase"
+    e.candidate_json[id].fields.last_name = "Oliver"
+    e.candidate_json[id].fields.color_hex = "#ff5733 " 
+}
+//greens
+function switcheroo29() {
+    var id = e.candidate_json.map(p=>p.pk).indexOf(203)
+    e.candidate_json[id].fields.first_name = "Jill"
+    e.candidate_json[id].fields.last_name = "Stein"
+    e.candidate_json[id].fields.color_hex = "#C1E1C1 " 
+}
 
 function tunnel(new_q){
     return e.questions_json[e.questions_json.map(f=>f.pk).indexOf(new_q)];
@@ -7711,6 +7725,8 @@ cyoAdventure = function(a) {
 
     //Q14
     if (e.noCounter == 13) {
+        switcheroo28();
+        switcheroo29();
         if (running == true) {
             if (debate == 1 && win > 6 && trust > 5) { // stuck in after debate
                 campaignTrail_temp.questions_json[13] = tunnel(84047);
@@ -7892,6 +7908,7 @@ cyoAdventure = function(a) {
 
 vpTable = {
     // Democrats
+    "Joe Biden": "Kamala Harris",
     "Kamala Harris": "Tim Walz",
     "Sherrod Brown": "Gina Raimondo",
     "Gretchen Whitmer": "Raphael Warnock",
@@ -7910,7 +7927,13 @@ vpTable = {
     "Josh Hawley": "Kristi Noem",
     "Ron DeSantis": "Glenn Youngkin",
     "Brian Kemp": "Byron Donalds",
-    "Nikki Haley": "Mike Gallagher"
+    "Nikki Haley": "Mike Gallagher",
+
+    // Greens
+    "Jill Stein": "Butch Ware",
+
+    //Libertarians
+    "Chase Oliver": "Mike ter Maat"
 }
 
 vpTableHistorical = {
