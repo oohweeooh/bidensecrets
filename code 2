@@ -576,7 +576,7 @@ campaignTrail_temp.answers_json = [
         "pk": 83952,
         "fields": {
             "question": 83951,
-            "description": "progrep, trust"
+            "description": "progrep, trust\nCOVID has wrecked our economy and killed thousands. We have to hit the ground running to turn the tide, so we'll have a truncated ceremony, to really get the ball rolling on a stimulus package."
         }
     },
     {
@@ -584,7 +584,7 @@ campaignTrail_temp.answers_json = [
         "pk": 83957,
         "fields": {
             "question": 83951,
-            "description": "trust"
+            "description": "trust\nLook, this was a battle, for the soul of our nation, and we won. We need to start healing the deep wounds inflicted by the former president. I'll reach out to moderate Republicans to attend as guests of honor to the inauguration."
         }
     },
     {
@@ -592,7 +592,7 @@ campaignTrail_temp.answers_json = [
         "pk": 83962,
         "fields": {
             "question": 83951,
-            "description": "progrep"
+            "description": "progrep\nWe're going to use our slim majority to the maximum that we can. Student debt relief, Medicare expansion, raising the minimum wage, we're going to make America into a country that works for everyone, not just the rich."
         }
     },
     {
@@ -7225,6 +7225,36 @@ campaignTrail_temp.answer_score_global_json = [
             "affected_candidate": 200,
             "global_multiplier": 0.02
         }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 84131,
+        "fields": {
+            "answer": 83952,
+            "candidate": 201,
+            "affected_candidate": 201,
+            "global_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 84133,
+        "fields": {
+            "answer": 83957,
+            "candidate": 201,
+            "affected_candidate": 201,
+            "global_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 84135,
+        "fields": {
+            "answer": 83962,
+            "candidate": 201,
+            "affected_candidate": 201,
+            "global_multiplier": 0.005
+        }
     }
 ]
 
@@ -7237,6 +7267,36 @@ campaignTrail_temp.answer_score_issue_json = [
             "issue": 103,
             "issue_score": 0.4,
             "issue_importance": 6
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_issue",
+        "pk": 84132,
+        "fields": {
+            "answer": 83952,
+            "issue": 103,
+            "issue_score": 0.4,
+            "issue_importance": 2
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_issue",
+        "pk": 84134,
+        "fields": {
+            "answer": 83957,
+            "issue": 103,
+            "issue_score": 0.2,
+            "issue_importance": 2
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_issue",
+        "pk": 84136,
+        "fields": {
+            "answer": 83962,
+            "issue": 103,
+            "issue_score": 0.6,
+            "issue_importance": 2
         }
     }
 ]
@@ -7419,6 +7479,8 @@ var poss = 0;
 var kill = 0;
 var running = true; 
 var forced = false;
+var dem = "Biden";
+var rep = "Trump";
 
 //dems
 //harris/walz
@@ -7796,12 +7858,14 @@ cyoAdventure = function(a) {
                 campaignTrail_temp.questions_json[13] = tunnel(84046);
                 switcheroo1();
                 switcheroo11();
+                dem = "Harris";
                 forced = true;
                 poss += 1;
             } else if (debate == 0 && trust > 5) {
                 if (e.player_answers.includes(84086)) { // rose garden stuck in 
                     campaignTrail_temp.questions_json[13] = tunnel(84047);
                     switcheroo23();
+                    rep = "Vance";
                 } else if (e.player_answers.includes(84120)) { // active campaign stuck in
                     campaignTrail_temp.questions_json[13] = tunnel(84047);
                     switcheroo26();
@@ -7812,6 +7876,8 @@ cyoAdventure = function(a) {
                     campaignTrail_temp.questions_json[13] = tunnel(84046);
                     switcheroo2();
                     switcheroo24();
+                    dem = "Harris";
+                    rep = "Youngkin";
                     vpTable["Kamala Harris"] = "Josh Shapiro";
                     vpTable["Glenn Youngkin"] = "Tom Emmer";
                     forced = true;
@@ -7819,6 +7885,8 @@ cyoAdventure = function(a) {
                     campaignTrail_temp.questions_json[13] = tunnel(84046);
                     switcheroo3();
                     switcheroo25();
+                    dem = "Harris";
+                    rep = "Lake";
                     vpTable["Kamala Harris"] = "Andy Beshear";
                     vpTable["Kari Lake"] = "Josh Hawley";
                     forced = true;
@@ -7833,18 +7901,26 @@ cyoAdventure = function(a) {
                     if (trust >= 6) {
                         switcheroo4();
                         switcheroo12();
+                        dem = "Brown";
+                        rep = "DeSantis";
                     } else if (trust < 6) {
                         switcheroo5();
                         switcheroo13();
+                        dem = "Whitmer";
+                        rep = "Hawley";
                     }
                 } else if (win < 4) {
                     if (trust >= 6) {
                         switcheroo3();
                         switcheroo14();
+                        dem = "Harris";
+                        rep = "Youngkin";
                         vpTable["Kamala Harris"] = "Andy Beshear";
                     } else if (trust < 6) {
                         switcheroo6();
                         switcheroo15();
+                        dem = "Cooper";
+                        rep = "Burgum";
                     }
                 }
             } else if (progrep < 5) {
@@ -7852,17 +7928,24 @@ cyoAdventure = function(a) {
                     if (trust >= 6) {
                         switcheroo7();
                         switcheroo16();
+                        dem = "Warnock";
+                        rep = "Kemp";
                     } else if (trust < 6) {
                         switcheroo8();
                         switcheroo17();
+                        dem = "Merkley";
+                        rep = "Lake";
                     }
                 } else if (win < 4) {
                     if (trust >= 6) {
                         switcheroo9();
                         switcheroo18();
+                        dem = "Buttigieg";
+                        rep = "Haley";
                     } else if (trust < 6) {
                         switcheroo10();
                         switcheroo19();
+                        dem = "Newsom";
                         vpTable["Donald Trump"] = "Sarah Huckabee Sanders";
                     }
                 } 
